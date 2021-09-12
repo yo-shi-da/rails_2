@@ -1,2 +1,21 @@
-<h1>Pictures#index</h1>
-<p>Find me in app/views/pictures/index.html.erb</p>
+<h1>Topページ</h1>
+<h2>FacebookCloneアプリケーション</h2>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>投稿一覧</th>
+  </tr>
+<% @pictures.each do |picture| %>
+  <tr>
+    <td><%= picture.content %></td>
+    <td><%= picture.image %></td>
+    <td><%= link_to '投稿の詳細', picture_path(picture.id), class:"btn btn-secondary" %></td>
+    <td><%= link_to "投稿を編集", edit_picture_path(picture.id), class:"btn btn-secondary" %></td>
+    <td><%= link_to '投稿を削除', picture_path(picture.id), class:"btn btn-secondary", method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+</table>
+<br>
+<%= link_to '新しく投稿する', new_picture_path, class:"btn btn-primary" %>

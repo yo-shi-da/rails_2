@@ -4,12 +4,23 @@
     <title>Rails2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <p>FaceBookCloneアプリケーションのHeader</p>
+      <img src="/assets/Facebook.png" alt="">
+      <hr>
+    </header>
+      <%= yield %>
+    <footer>
+      <hr>
+      <p>FaceBookCloneアプリケーションFooter</p>
+      <img src="/assets/Facebook.png" alt="">
+    </footer>
   </body>
 </html>
