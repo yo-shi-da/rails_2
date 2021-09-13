@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def create
-    user = User.find_by(email: session_params[:email].downcase) #emailをキーにして、合致したデータを取り出す。
+    user = User.find_by(email: session_params[:email].downcase)
     if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       redirect_to pictures_path(user.id)
@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
     flash[:notice] = 'ログアウトしました!!!'
     redirect_to new_session_path
   end
-
 
   private
 
