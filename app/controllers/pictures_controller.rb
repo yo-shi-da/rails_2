@@ -6,32 +6,29 @@ class PicturesController < ApplicationController
   end
 
   def new
-    @picture = Picture.new
+    if params[:back]
+      @picture = Picture.new(picture_params)
+    else
+      @picture = Picture.new
+    end
   end
 
   def create
     @picture = current_user.pictures.new(picture_params)
-    if params[:back]
-      render :new
+    if @picture.save
+      redirect_to pictures_path, notice: "作成しました！"
     else
-      if @picture.save
-        redirect_to pictures_path, notice: "作成しました！"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
   def show
-    # @picture = current_user.pictures.find(params[:id])
   end
 
   def edit
-    # @picture = current_user.pictures.find(params[:id])
   end
 
   def update
-    # @picture = current_user.pictures.find(params[:id])
     if @picture.update(picture_params)
       redirect_to pictures_path, notice: "編集しました！"
     else
@@ -40,7 +37,6 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    # @picture = current_user.pictures.find(params[:id])
     @picture.destroy
     redirect_to pictures_url, notice: "削除しました。"
   end
@@ -58,7 +54,6 @@ class PicturesController < ApplicationController
   def set_picture
     @picture = current_user.pictures.find(params[:id])
   end
-
 
 end
 
